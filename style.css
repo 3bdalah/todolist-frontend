@@ -1,0 +1,15 @@
+:root {
+    --bg-color : black;
+    --color : white;
+}
+
+
+body{
+    background-color: var(--bg-color);
+    color:var(--color);
+}
+
+.dark-mood{
+   --bg-color: white;
+   --color : black;
+}
