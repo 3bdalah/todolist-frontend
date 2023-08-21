@@ -9,8 +9,6 @@ const btnCompeleted = document.getElementById("btn-completed");
 const btnAll = document.getElementById("btn-all");
 const counterTasks = document.getElementById("counter-tasks");
 const body = document.getElementById("body");
-
-const btnClearAll = document.getElementById("btn-clear-all");
 // Retrieve the stored state from local storage
 const storedStateJSON = localStorage.getItem("state");
 
@@ -43,25 +41,11 @@ btnDone.addEventListener("click", () => {
 });
 
 // Event listener for updating task completion status
-listTasks.addEventListener("click", (event) => {
-  const btnRemove = event.target;
-  console.log("Event Clicked", btnRemove);
-  const iconClear = parseInt(btnRemove.getAttribute("data-clear-id"));
-  if (iconClear !== NaN && iconClear) {
-    const newState = initialState.storeTasks.filter(
-      (task) => task.id !== iconClear
-    );
-    initialState.storeTasks = [...newState];
-    initialState.counterTasks = 0;
-    displayTasks(initialState.storeTasks);
-    updateLocalStorage();
-  }
-});
-
-// Event listener for updating task completion status
 listTasks.addEventListener("change", (event) => {
+  console.log("evenyt clicked", event);
   const checkbox = event.target;
   const taskId = parseInt(checkbox.getAttribute("data-task-id"));
+  // loook this fucke point
   const isChecked = checkbox.checked;
 
   initialState.storeTasks = initialState.storeTasks.map((task) => {
@@ -125,10 +109,4 @@ btnCompeleted.addEventListener("click", () => {
   const arr = initialState.storeTasks.filter((task) => task.checked);
   console.log("checked items", arr);
   displayTasks(arr);
-});
-
-btnClearAll.addEventListener("click", () => {
-  initialState.storeTasks = [];
-  updateLocalStorage();
-  displayTasks(initialState.storeTasks);
 });
